@@ -1,4 +1,4 @@
-import {User} from'../models/user-model.js';
+import {User} from "../models/user-model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -22,7 +22,7 @@ export const register = async (req,res)=>{
         await User.create({
             fullname,
             email,
-            phone,
+            phoneNumber,
             password:hashedPassword,
             role
         });
@@ -35,7 +35,7 @@ export const register = async (req,res)=>{
         console.log(err);        
     }
 }
-export const login = async ()=>{
+export const login = async (req,res)=>{
     try{
         const {email,password,role} = req.body;
         if(!email ||!password || !role){
@@ -102,13 +102,11 @@ export const updateProfile = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
         const file = req.file;
-        if(!fullname || !email || !phoneNumber || !bio || !skills){
-            return res.status(400).json({
-                message:"Some detail is not filled",
-                success:false
-            });
-        };
-        const skillsArray = skills.split(",");
+
+        let skillsArray;
+        if(skills){
+            skillsArray = skills.split(",");
+        }
 
         const userId = req.id; // middleware authentication
         let user = await User.findById(userId);
@@ -120,11 +118,11 @@ export const updateProfile = async (req, res) => {
             });
         };
         
-        user.fullname = fullname,
-        user.email = email,
-        user.phoneNumber = phoneNumber,
-        user.profile.bio = bio,
-        user.profile.skills = skillsArray
+        if(fullname) user.fullname = fullname;
+        if(email) user.email = email;
+        if(phoneNumber) user.phoneNumber = phoneNumber;
+        if(bio) user.profile.bio = bio;
+        if(skillsArray) user.profile.skills = skillsArray;
 
         await user.save();
 
