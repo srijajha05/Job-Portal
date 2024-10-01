@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
-import { Link, LogOut, User2 } from "lucide-react";
-
+import { LogOut, User2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import React from "react";
 import { Button } from "../ui/button";
 
@@ -23,10 +23,10 @@ function Navbar() {
           </ul>
           {
             !user ? (
-                <div className="flex items-center gap-2">
-                    <Button className="bg-gradient-to-r from-red-500 to-pink-500 text-black px-4 py-2 rounded transition duration-300 hover:from-blue-200 hover:to-cyan-600">SignUp</Button>
-                    <Button className="bg-gradient-to-r from-red-500 to-pink-500 text-black px-4 py-2 rounded transition duration-300 hover:from-blue-200 hover:to-cyan-600">Login</Button>
-                </div>
+              <div className="flex items-center gap-2">
+                <Link to="/signup"><Button className="bg-gradient-to-r from-red-500 to-pink-500 text-black px-4 py-2 rounded transition duration-300 hover:from-blue-200 hover:to-cyan-600">SignUp</Button></Link>
+                <Link to="/login"><Button className="bg-gradient-to-r from-red-500 to-pink-500 text-black px-4 py-2 rounded transition duration-300 hover:from-blue-200 hover:to-cyan-600">Login</Button></Link>
+              </div>
             ):(
           <Popover>
             <PopoverTrigger asChild>
