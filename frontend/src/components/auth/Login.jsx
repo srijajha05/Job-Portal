@@ -4,8 +4,10 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { RadioGroup } from '../ui/radio-group';
 import { Button } from '../ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { USER_API_END_POINT } from '@/utils/constant';
+import { toast } from 'sonner';
 
 function Login() {
   const [input, setInput] = useState({
@@ -13,13 +15,14 @@ function Login() {
     password: "",
     role: "",
   });
+  const navigate = useNavigate();
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
   const submitHandler = async(e)=>{
     e.preventDefault();
     try{
-      const res = await axios.post(`USER_API_END_POINT/login`,input,{
+      const res = await axios.post(`${USER_API_END_POINT}/login`,input,{
         headers:{
           "Content-Type":"application/json"
         },

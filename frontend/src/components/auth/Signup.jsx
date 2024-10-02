@@ -9,6 +9,7 @@ import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { toast } from "sonner";
 
+
 function Signup() {
   const [input, setInput] = useState({
     fullname: "",
@@ -37,7 +38,7 @@ function Signup() {
       formData.append("file",input.file);
     }
     try{
-      const res = await axios.post(`USER_API_END_POINT/register`,formData,{
+      const res = await axios.post(`${USER_API_END_POINT}/register`,formData,{
         headers:{
           "Content-Type":"multipart/form-data"
         },
@@ -48,8 +49,9 @@ function Signup() {
         toast.success(res.data.message);
       }
     }
-    catch(err){
-      console.log(err);
+    catch(error){
+      console.log(error);
+      toast.error(error.response.data.message);
     }
   }
   return (
@@ -84,7 +86,7 @@ function Signup() {
           <div className="my-2">
             <Label>Phone Number</Label>
             <Input
-              type="number"
+              type="text"
               placeholder="phonenumber"
               value={input.phoneNumber}
               name="phoneNumber"
