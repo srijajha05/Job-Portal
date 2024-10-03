@@ -11,7 +11,7 @@ function HeroSection() {
         </span>
         <h1 className="text-5xl font-bold">
           Your Dream Job, Just A Click Away <br /> Start your Journey with{" "}
-          <span className="text-green-900">Hire</span>
+          <span className="text-teal-600">Hire</span>
           <span className="text-orange-600">Way</span>
         </h1>
         <p className="font-medium w-1/2 ">

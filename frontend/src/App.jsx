@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from './components/shared/Navbar';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Jobs from './components/Jobs';
 import Browse from './components/Browse';
+import AboutUs from './components/AboutUs';
 
 const appRouter = createBrowserRouter([
   {
@@ -27,6 +27,10 @@ const appRouter = createBrowserRouter([
   {
     path:'/browse',
     element:<Browse/>
+  },
+  {
+    path:'/aboutus',
+    element:<AboutUs/>
   }
 ])
 
