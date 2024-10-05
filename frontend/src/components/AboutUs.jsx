@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './shared/Navbar';
-import Footer from './Footer';
+import Footer from './shared/Footer';
 
 const AboutUs = () => {
   return (
