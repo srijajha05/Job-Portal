@@ -6,13 +6,15 @@ import { Button } from './ui/button';
 import { Loader2 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { USER_API_END_POINT } from '@/utils/constant';
 import { setUser } from '@/redux/authSlice';
 import { toast } from 'sonner';
-import { USER_API_END_POINT } from '@/utils/constant';
 
-function UpdateProfileDialogue({open,setOpen}) {
+
+const UpdateProfileDialogue = ({open,setOpen})=>{
     const [loading,setLoading] = useState(false);
     const {user} = useSelector(store=>store.auth);
+
     const [input,setInput] = useState({
         fullname:user?.fullname,
         email :user?.email,
@@ -24,11 +26,11 @@ function UpdateProfileDialogue({open,setOpen}) {
     const dispatch = useDispatch();
 
     const changeEventHandler = (e)=>{
-        setInput({...input,[e.target.name]:e.target.value})
+        setInput({...input,[e.target.name]:e.target.value});
     }
 
     const fileChangeHandler = (e)=>{
-        const file =e.target.files?.[0];
+        const file = e.target.files?.[0];
         setInput({...input,file});
     }
 
@@ -44,6 +46,7 @@ function UpdateProfileDialogue({open,setOpen}) {
             formData.append("file",input.file);
         }
         try{
+            setLoading(true);
             const res = await axios.post(`${USER_API_END_POINT}/profile/update`,formData,{
                 headers:{
                     'Content-Type':'multipart/form-data'
@@ -55,12 +58,14 @@ function UpdateProfileDialogue({open,setOpen}) {
                 toast.success(res.data.message);
             }
         }
-        catch(err){
-            console.log(err);
-            toast.error(err.response.data.message);
+        catch(error){
+            console.log(error);
+            toast.error(error.response.data.message);
+        }
+        finally{
+            setLoading(false);
         }
         setOpen(false);
-        console.log(input);
     }
 
   return (
@@ -97,7 +102,6 @@ function UpdateProfileDialogue({open,setOpen}) {
             <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor="phoneNumber" className='text-right'>Phone Number</Label>
                 <Input
-                type="text"
                 id="phoneNumber"
                 name="phoneNumber"
                 value={input.phoneNumber}
@@ -108,7 +112,6 @@ function UpdateProfileDialogue({open,setOpen}) {
             <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor="bio" className='text-right'>Bio</Label>
                 <Input
-                type="text"
                 id="bio"
                 name="bio"
                 value={input.bio}
@@ -119,7 +122,6 @@ function UpdateProfileDialogue({open,setOpen}) {
             <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor="skills" className='text-right'>Skills</Label>
                 <Input
-                type="text"
                 id="skills"
                 name="skills"
                 value={input.skills}

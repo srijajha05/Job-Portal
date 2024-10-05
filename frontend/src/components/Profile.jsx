@@ -10,7 +10,7 @@ import UpdateProfileDialogue from './UpdateProfileDialogue'
 import { useSelector } from 'react-redux'
 
 const hasResume = true;
-function Profile() {
+const Profile = () => {
     const [open,setOpen] = useState(false);
     const {user} = useSelector(store=>store.auth);
   return (
@@ -43,14 +43,14 @@ function Profile() {
             <h1>skills</h1>
             <div className='flex items-center gap-3 mt-3'>
                 {
-                    user?.profile?.skills.length != 0 ? user?.profile?.skills.map((item,index)=><Badge className={'py-3'} key={index}>{item}</Badge>) :<span>no</span>
+                    user?.profile?.skills.length != 0 ? user?.profile?.skills.map((item,index)=><Badge key={index}>{item}</Badge>) :<span>no</span>
                 }
             </div>
         </div>
         <div className='grid w-full max-w-sm items-center gap-1.5'>
             <Label className='text-md font-bold'>Resume</Label>
             {
-                hasResume ? <a className='text-blue-500 w-full hover:underline cursor-pointer' target='blank' href=''>Resume</a>:<span>no resume</span>
+                hasResume ? <a className='text-blue-500 w-full hover:underline cursor-pointer' target='blank' href={user?.profile?.resume}>{user?.profile?.resumeOriginalName}</a>:<span>no resume</span>
             }
         </div>
     </div>
