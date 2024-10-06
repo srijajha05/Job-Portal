@@ -18,15 +18,15 @@ function JobDescription() {
   const jobId = params.id;
   
 
-  // const applyJobHandler = async()=>{
-  //   try{
-  //     const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`);
+  const applyJobHandler = async()=>{
+    try{
+      const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`);
       
-  //   }
-  //   catch(err){
-  //     console.log(err);
-  //   }
-  // }
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
 
   useEffect(()=>{
     const fetchSingleJob = async ()=>{
