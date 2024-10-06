@@ -7,16 +7,18 @@ import { useNavigate } from 'react-router-dom'
 
 function Job({job}) {
   const navigate = useNavigate();
-  const daysAgoFunction=(mongodbTime)=>{
+  
+  const daysAgoFunction = (mongodbTime) => {
     const createdAt = new Date(mongodbTime);
     const currentTime = new Date();
     const timeDifference = currentTime - createdAt;
-    return Math.floor(timeDifference/(1000*24*60*60))
-  }
+    return Math.floor(timeDifference / (1000*24*60*60)); 
+  };
+  
   return (
     <div className='p-5 rounded-md shadow-xl bg-white border border-gray-100'>
       <div className='flex items-center justify-between'>
-      <p className='text-sm text-gray-600'>{daysAgoFunction(job?.createdAt)==0?"Today":`${daysAgoFunction(job?.createdAt)} days ago`}</p>
+      <p className='text-sm text-gray-600'>{daysAgoFunction(job?.createdAt)===0 ? "Today" : `${daysAgoFunction(job?.createdAt)} days ago`}</p>
       <Button variant="outline" className="rounded-full" size="icon">
         <Bookmark/>
       </Button>
@@ -37,9 +39,9 @@ function Job({job}) {
         <p className='text-sm text-gray-600'>{job?.description}</p>
     </div>
     <div className='flex items-center gap-2 mt-4'>
-    <Badge className={'text-blue-700 font-bold'} variant="ghost">{job?.position}</Badge>
+    <Badge className={'text-blue-700 font-bold'} variant="ghost">{job?.position} positions</Badge>
     <Badge className={'text-red-700 font-bold'} variant="ghost">{job?.jobType}</Badge>
-    <Badge className={'font-bold'} variant="ghost">{job?.salary}</Badge>
+    <Badge className={'font-bold'} variant="ghost">{job?.salary} LPA</Badge>
     </div>
     <div className='flex items-center gap-4 mt-4'>
       <Button variant="outline" onClick={()=>navigate(`/description/${job?._id}`)} className='bg-pink-100'>Details</Button>

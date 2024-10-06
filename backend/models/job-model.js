@@ -49,7 +49,7 @@ const jobSchema = new mongoose.Schema({
         }
     ]
 },
-{timestamp:true}
+{timestamps:true}
 );
 
 export const Job = mongoose.model("Job",jobSchema);
