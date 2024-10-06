@@ -11,7 +11,7 @@ function JobDescription() {
   const {singleJob} = useSelector(store=>store.job);
   const {user} = useSelector(store=>store.auth);
 
-  const hasApplied =singleJob?.applications?.some(application=>application.applicant==user?._id) || false;
+  const hasApplied =singleJob?.applications?.some(application=>application.applicant === user?._id) || false;
 
   const dispatch = useDispatch();
   const params = useParams();
