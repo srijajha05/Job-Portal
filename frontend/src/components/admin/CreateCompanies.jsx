@@ -8,6 +8,7 @@ import axios from 'axios'
 import { COMPANY_API_END_POINT } from '@/utils/constant'
 import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
+import { setSingleCompany } from '@/redux/companySlice'
 
 function CreateCompanies() {
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ function CreateCompanies() {
         }
         catch(error){
             console.log(error);
+            toast.error(error.response.data.message);
         }
     }
   return (
