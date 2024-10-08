@@ -13,6 +13,7 @@ import useGetCompanyById from "@/hooks/useGetCompanyById";
 
 function CompanySetUp() {
   const params = useParams();
+  useGetCompanyById();
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -20,9 +21,10 @@ function CompanySetUp() {
     location: "",
     file: null,
   });
-
-  const [loading, setLoading] = useState(false);
   const {singleCompany} = useSelector(store=>store.company);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -31,7 +33,6 @@ function CompanySetUp() {
     setInput({ ...input, file });
   };
 
-  const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
