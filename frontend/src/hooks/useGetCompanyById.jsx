@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 
-function useGetCompanyById({companyId}) {
+function useGetCompanyById(companyId) {
     const dispatch = useDispatch();
     useEffect(()=>{
         const fetchSingleCompany = async () => {

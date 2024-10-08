@@ -13,7 +13,7 @@ import useGetCompanyById from "@/hooks/useGetCompanyById";
 
 function CompanySetUp() {
   const params = useParams();
-  useGetCompanyById();
+  useGetCompanyById(params.id);
   const [input, setInput] = useState({
     name: "",
     description: "",
