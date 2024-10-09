@@ -1,8 +1,8 @@
+import React from "react";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { LogOut, User2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import React from "react";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -43,7 +43,7 @@ function Navbar() {
               user && user.role=="recruiter" ? (
                 <>
                 <li><Link to="/admin/companies">Companies</Link></li>
-            <li><Link to="/aboutus">About Us</Link></li>
+
             <li><Link to="/admin/jobs">Jobs</Link></li>
                 </>
               ) :(

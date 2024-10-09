@@ -1,5 +1,5 @@
-import { Search } from 'lucide-react';
 import React, { useState } from 'react'
+import { Search } from 'lucide-react';
 import { Button } from './ui/button';
 import { useDispatch } from 'react-redux';
 import { setSearchedQuery } from '@/redux/jobSlice';
@@ -27,10 +27,7 @@ function HeroSection() {
           <span className="text-orange-600">Way</span>
         </h1>
         <p className="font-medium w-1/2 ">
-          At Hireway, we are committed to empowering your career journey. Our
-          user-friendly platform connects skilled individuals with prominent
-          businesses, making it easier than ever to find the right opportunity
-          and achieve your professional goals.
+          At Hireway, we are committed to empowering your career journey. Our user-friendly platform connects skilled individuals with prominent businesses, making it easier than ever to find the right opportunity and achieve your professional goals.
         </p>
         <div className="flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
           <input

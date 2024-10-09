@@ -7,19 +7,20 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function CompaniesTable() {
-  const { companies ,searchCompanyByText} = useSelector((store) => store.company);
+  const { companies ,searchCompanyByText} = useSelector(store => store.company);
   const [filterCompany,setFilterCompany] = useState(companies);
   const navigate = useNavigate();
 
   useEffect(()=>{
     const filteredCompany = companies.length >= 0 && companies.filter((company)=>{
         if(!searchCompanyByText){
-            return true;
+          return true;
         };
         return company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase());
     });
     setFilterCompany(filteredCompany);
-  },[companies,searchCompanyByText])
+  },[companies,searchCompanyByText]);
+
   return (
     <div>
       <Table>
@@ -34,11 +35,7 @@ function CompaniesTable() {
         </TableHeader>
         <TableBody>
           {
-            companies?.length <= 0 ? 
-            <span>No company registered </span>
-          : (
-            <>
-              {filterCompany?.map((company) => (
+              filterCompany?.map((company) => (
                 <tr>
                     <TableCell>
                       <Avatar>
@@ -47,7 +44,7 @@ function CompaniesTable() {
                     </TableCell>
                     <TableCell>{company.name}</TableCell>
                     <TableCell>{company.createdAt.split("T")[0]}</TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right cursor-pointer">
                       <Popover>
                         <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
                         <PopoverContent className="w-32">
@@ -59,10 +56,7 @@ function CompaniesTable() {
                     </TableCell>
                 </tr>
               ))
-              }
-            </>
-          )
-          }
+            }
         </TableBody>
       </Table>
     </div>

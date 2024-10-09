@@ -36,5 +36,6 @@ export const {
     setAllAdminJobs,
     setSearchJobByText ,
     setAllAppliedJobs,
-    setSearchedQuery} = jobSlice.actions;
+    setSearchedQuery
+} = jobSlice.actions;
 export default jobSlice.reducer;

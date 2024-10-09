@@ -5,12 +5,13 @@ import { Edit2, Eye, MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function AdminJobsTable() {
+const AdminJobsTable = () => {
   const {allAdminJobs,searchJobByText} = useSelector(store=>store.job);
   const [filterJobs,setFilterJobs] = useState(allAdminJobs);
   const navigate = useNavigate();
 
   useEffect(()=>{
+    console.log('called');
     const filteredJobs = allAdminJobs.filter((job)=>{
         if(!searchJobByText){
             return true;
@@ -38,7 +39,7 @@ function AdminJobsTable() {
                     <TableCell>{job?.company?.name}</TableCell>
                     <TableCell>{job?.title}</TableCell>
                     <TableCell>{job.createdAt.split("T")[0]}</TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right cursor-pointer">
                       <Popover>
                         <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
                         <PopoverContent className="w-32">

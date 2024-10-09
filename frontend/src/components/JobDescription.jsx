@@ -16,9 +16,9 @@ function JobDescription() {
 
   const [hasApplied , setHasApplied] = useState(hasAppliedInitially);
 
-  const dispatch = useDispatch();
   const params = useParams();
   const jobId = params.id;
+  const dispatch = useDispatch();
   
 
   const applyJobHandler = async()=>{
@@ -45,24 +45,16 @@ function JobDescription() {
         });
   
         if (res.data.success) {
-          // Dispatch the job details to state
           dispatch(setSingleJob(res.data.job));
-  
-          // Check if the user has applied for the job
-          setHasApplied(
-            res.data.job.applications.some(
-              (application) => application.applicant === user?._id
-            )
-          );
+          setHasApplied(res.data.job.applications.some(application => application.applicant === user?._id));
         }
-      } catch (err) {
-        console.error("Error fetching job details:", err);
       }
-    };
-  
-    // Call the function to fetch job details
+      catch (err) {
+        console.log(err);
+      }
+    }
     fetchSingleJob();
-  }, [jobId, dispatch, user]);
+  }, [jobId, dispatch, user?._id]);
   
   return (
     <div className='max-w-7xl mx-auto my-10'>
@@ -76,9 +68,9 @@ function JobDescription() {
     </div>
     </div>
     <Button 
-    onClick={hasAppliedInitially?null:applyJobHandler}
-    disabled={hasAppliedInitially} className={`rounded-lg ${hasAppliedInitially ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900'}`}>
-      {hasAppliedInitially ? 'Already Applied' : 'Apply Now'}
+    onClick={hasApplied ? null : applyJobHandler}
+    disabled={hasApplied} className={`rounded-lg ${hasApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900'}`}>
+      {hasApplied ? 'Already Applied' : 'Apply Now'}
     </Button>
     </div>
     <h1 className='border-b-2 border-b-gray-300 font-medium py-4'>Job Description</h1>

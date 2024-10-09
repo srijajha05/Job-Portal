@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
-import { Label } from '@radix-ui/react-label'
+import { Label } from './ui/label';
 import { Input } from './ui/input'
 import { Button } from './ui/button';
 import { Loader2 } from 'lucide-react';
@@ -16,12 +16,12 @@ const UpdateProfileDialogue = ({open,setOpen})=>{
     const {user} = useSelector(store=>store.auth);
 
     const [input,setInput] = useState({
-        fullname:user?.fullname,
-        email :user?.email,
-        phoneNumber : user?.phoneNumber,
-        bio: user?.profile?.bio,
-        skills: user?.profile?.skills?.map(skill=>skill),
-        file: user?.profile?.resume
+        fullname:user?.fullname || "",
+        email :user?.email || "",
+        phoneNumber : user?.phoneNumber || "",
+        bio: user?.profile?.bio || "",
+        skills: user?.profile?.skills?.map(skill=>skill) || "",
+        file: user?.profile?.resume || ""
     });
     const dispatch = useDispatch();
 
@@ -80,9 +80,9 @@ const UpdateProfileDialogue = ({open,setOpen})=>{
             <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor="name" className='text-right'>Name</Label>
                 <Input
-                type="text"
                 id="name"
                 name="name"
+                type="text"
                 value={input.fullname}
                 onChange={changeEventHandler}
                 className='col-span-3'
@@ -91,9 +91,9 @@ const UpdateProfileDialogue = ({open,setOpen})=>{
             <div className='grid grid-cols-4 items-center gap-4'>
                 <Label htmlFor="email" className='text-right'>Email</Label>
                 <Input
-                type="email"
                 id="email"
                 name="email"
+                type="email"
                 value={input.email}
                 onChange={changeEventHandler}
                 className='col-span-3'

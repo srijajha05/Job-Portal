@@ -11,6 +11,7 @@ function Applicants() {
     const params = useParams();
     const dispatch = useDispatch();
     const {applicants} = useSelector(store=>store.application);
+
     useEffect(()=>{
        const fetchAllApplicants = async ()=>{
         try{
@@ -23,6 +24,7 @@ function Applicants() {
        }
        fetchAllApplicants();
     },[])
+
   return (
     <div>
       <Navbar/>

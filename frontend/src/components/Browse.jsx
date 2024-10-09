@@ -11,7 +11,9 @@ function Browse() {
   const {allJobs} = useSelector(store=>store.job);
   const dispatch = useDispatch();
   useEffect(()=>{
-    dispatch(setSearchedQuery(""));
+    return() => {
+      dispatch(setSearchedQuery(""));
+    }
   },[])
   return (
     <div>

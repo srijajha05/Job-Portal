@@ -9,7 +9,7 @@ import AboutUs from './components/AboutUs';
 import Profile from './components/Profile';
 import JobDescription from './components/JobDescription';
 import Companies from './components/admin/Companies';
-import CreateCompanies from './components/admin/CreateCompanies';
+import CompanyCreate from './components/admin/CompanyCreate';
 import CompanySetUp from './components/admin/CompanySetUp';
 import AdminJobs from './components/admin/AdminJobs';
 import PostJob from './components/admin/PostJob';
@@ -57,7 +57,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path:'/admin/companies/create',
-    element:<ProtectedRoute><CreateCompanies/></ProtectedRoute>
+    element:<ProtectedRoute><CompanyCreate/></ProtectedRoute>
   },
   {
     path:'/admin/companies/:id',

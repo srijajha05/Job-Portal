@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import axios from 'axios';
 import { JOB_API_END_POINT } from '@/utils/constant';
+import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
-import { toast } from 'sonner';
 
 function PostJob() {
     const [input,setInput] = useState({
@@ -43,7 +43,7 @@ function PostJob() {
                     'Content-Type':'application/json'
                 },
                 withCredentials:true
-            })
+            });
             if(res.data.success){
                 toast.success(res.data.message);
                 navigate("/admin/jobs");

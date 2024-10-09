@@ -13,9 +13,11 @@ function Companies() {
   const [input,setInput] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(()=>{
     dispatch(setSearchCompanyByText(input));
-  },[input])
+  },[input]);
+  
   return (
     <div>
       <Navbar/>

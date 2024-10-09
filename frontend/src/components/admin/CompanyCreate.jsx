@@ -10,7 +10,7 @@ import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
 import { setSingleCompany } from '@/redux/companySlice'
 
-function CreateCompanies() {
+function CompanyCreate() {
     const navigate = useNavigate();
     const [companyName,setCompanyName] = useState();
     const dispatch = useDispatch();
@@ -59,4 +59,4 @@ function CreateCompanies() {
   )
 }
 
-export default CreateCompanies
+export default CompanyCreate
